@@ -1,0 +1,19 @@
+---
+title: "DDP-Week-3-Assignment - Mikhail Ivanov"
+output: ioslides_presentation
+date: "`r format(Sys.time(), '%d %m %Y')`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Plot
+```{r, include=FALSE}
+library(plotly)
+x <- rnorm(100)
+y <- x+rnorm(100)
+```
+```{r, echo=FALSE}
+plot_ly(x=x, y=y, type = "scatter", mode="markers")
+```
