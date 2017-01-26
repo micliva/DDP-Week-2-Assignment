@@ -1,0 +1,51 @@
+Child's height through his parents
+========================================================
+author: Mikhail Ivanov  
+date: 01/26/2017          
+autosize: true
+
+Overview
+========================================================
+
+## This application predicts child's height through his gender and the parents's height, uses Galton's data from dataset *GaltonFamilies*, in the **HistData** R package
+                     
+Data loading
+========================================================
+
+```{r}
+library(shiny)
+library(HistData)
+library(dplyr)
+library(ggplot2)
+
+data(GaltonFamilies)
+g <- GaltonFamilies
+
+# converting in centimeters:
+        
+g <- mutate(g, father=father*2.54,
+               mother=mother*2.54,
+               childHeight=childHeight*2.54)
+
+model <- lm(childHeight ~ father + mother + gender, data=g)
+
+```
+
+Model
+========================================================
+## Quality of this model can be obtain by R^2:
+
+```{r}
+round(summary(model)$adj.r.squared, 4)
+```
+
+Application
+========================================================
+To display with, we build small Shiny application:
+
+ https://micliva.shinyapps.io/DDP-Course_Project/ 
+
+The application allows the user to:
+select height of parents (mother and father) and gender of child and give predicted child's height.
+
+You can find source at: https://github.com/micliva/Post-rep/
